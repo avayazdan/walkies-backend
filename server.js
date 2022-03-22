@@ -1,26 +1,25 @@
-import express from "express"
-import router from "./views/router.js"
-import logger from "./middleware/logger.js"
-import errorHandler from "./middleware/errorHandler.js"
-import { connectToDb } from "./db/helpers.js"
+import express from 'express'
+import router from './views/router.js'
+import logger from './middleware/logger.js'
+import errorHandler from './middleware/errorHandler.js'
+import { connectToDb } from './db/helpers.js'
 // import CORS if/when needed
 // import dotenv if/when needed
 
 async function startServer() {
-  const app = express();
+  const app = express()
 
-//   dotenv.config();
-  const PORT = process.env.PORT ? process.env.PORT : 4000;
+  //   dotenv.config();
+  const PORT = process.env.PORT ? process.env.PORT : 4000
 
-// setting up express to use
-  app.use(express.json());
+  // setting up express to use
 
-  app.use(logger);
-  app.use(router);
-  app.use(errorHandler);
+  app.use(logger)
+  app.use(router)
+  app.use(errorHandler)
 
-  await connectToDb();
-  console.log("Claudia's message to you! ");
-  app.listen(PORT, () => console.log(`Express server running on Port ${PORT}`));
+  await connectToDb()
+  console.log('Walkie\'s message to you! ')
+  app.listen(PORT, () => console.log(`Express server running on Port ${PORT}`))
 }
-startServer();
+startServer()
