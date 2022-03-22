@@ -1,7 +1,12 @@
 import mongoose from 'mongoose'
 
 export function connectToDb() {
-  return mongoose.connect('mongodb://127.0.0.1:27017/dogs')
+    const opts = {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  const connectionString = process.env.CONNECT ? process.env.CONNECT : 'mongodb://127.0.0.1:27017/dogs'
+  return mongoose.connect(connectionString, opts)
 
 }
 

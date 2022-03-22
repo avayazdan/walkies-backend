@@ -6,9 +6,9 @@ const userSchema = new mongoose.Schema({
   image: { type: String, required: true },
   location: { type: String, required: true },
   aboutMe: { type: String, required: true },
-  avaliability: { type: Number, required: true }, 
+  avaliability: { type: String, required: true }, 
   eMail: { type: String, required: true, unique: true, maxLength: 50 },
-  password: { type: String, required: true, minLength: 8, maxLength: 18 },
+  password: { type: String, required: true, minLength: 8 },
   role: { type: String, enum: ["owner", "borrower"] },
   registeredAt: { type: Date, default: Date.now },
 

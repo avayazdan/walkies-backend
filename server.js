@@ -4,19 +4,21 @@ import logger from './middleware/logger.js'
 import errorHandler from './middleware/errorHandler.js'
 import { connectToDb } from './db/helpers.js'
 // import CORS if/when needed
-// import dotenv if/when needed
+import dotenv from "dotenv"
 
 async function startServer() {
   const app = express()
 
-  //   dotenv.config();
+  dotenv.config();
   const PORT = process.env.PORT ? process.env.PORT : 4000
 
   // setting up express to use
 
+  app.use(express.json())
   app.use(logger)
   app.use(router)
   app.use(errorHandler)
+ 
 
   await connectToDb()
   console.log('Walkie\'s message to you! ')

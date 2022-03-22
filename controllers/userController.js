@@ -21,7 +21,7 @@ async function register(req, res, next) {
   
 
   async function login(req, res, next) {
-    const user = await User.findOne({ userName: req.body.userName })
+    const user = await User.findOne({ eMail: req.body.eMail })
     if (!user) {
       return res.status(400).json({ message: "Invalid Credentials." })
     }
@@ -32,7 +32,7 @@ async function register(req, res, next) {
     }
   
     const payload = {
-      userName: user.userName,
+      eMail: user.eMail,
       role: user.role,
     }
     const token = jwt.sign(payload, process.env.JWT_SECRET)

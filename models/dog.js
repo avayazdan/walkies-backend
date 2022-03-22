@@ -14,7 +14,7 @@ const dogSchema = new mongoose.Schema({
   age: { type: String, required: true },
   location: { type: String, required: true },
   description: { type: String, required: true },
-  avaliability: { type: Number, required: true },
+  avaliability: { type: String, required: true },
 
   comments: [commentSchema]
 })
