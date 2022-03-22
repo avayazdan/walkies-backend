@@ -1,6 +1,6 @@
 import express from 'express'
-// import dogsController from '../controllers/dogsController.js'
-// import userController from '../controllers/userController.js'
+import dogsController from '../controllers/dogsController.js'
+import userController from '../controllers/userController.js'
 
 const router = express.Router()
 
@@ -9,22 +9,22 @@ router.get("/", (req, res) => {
 });
 
 router.route("/dogs")
-  .get((req, res) => res.json({ message: 'hello dogs' }))
-  .post((req, res) => res.json({ message: 'hello dogs post' }))
+  .get(dogsController.index)
+  .post(dogsController.create)
 
 router.route("/dogs/:id")
-  .get((req, res) => res.json({ message: 'hello DOG' }))
-  .put((req, res) => res.json({ message: 'hello dogs put' }))
-  .delete((req, res) => res.json({ message: 'hello dogs delete' }))
+  .get(dogsController.show)
+  .put(dogsController.update)
+  .delete(dogsController.remove)
 
 router.route("/messages/:id")
   .get((req, res) => res.json({ message: 'hello message' }))
   .post((req, res) => res.json({ message: 'hello message post' }))
 
 router.route("/register")
-  .post((req, res) => res.json({ message: 'hello registered' }))
+  .post(userController.register)
 
 router.route("/signin")
-  .post((req, res) => res.json({ message: 'hello signed in' }))
+  .post(userController.login)
 
 export default router 
