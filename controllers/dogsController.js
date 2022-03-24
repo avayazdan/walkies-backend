@@ -1,4 +1,3 @@
-import dog from "../models/dog.js"
 import Dog from "../models/dog.js"
 
 // Dog emojis for text: 🐶🐕🦮🐩🐕‍🦺🐾🦴
@@ -8,8 +7,15 @@ import Dog from "../models/dog.js"
 async function index(req, res) {
   console.log(req)
   try {
-    const dogs = await Dog.find()
+    if (["owner"].includes(req.currentUser.role)){
+      const dogsToDisplay = await Dog.find({createdBy: req.currentUser._id})
+      res.send(dogsToDisplay)
+    }
+    else{
+      const dogs = await Dog.find().select("-comments")
     res.send(dogs)
+    }
+    
   } catch (e) {
     res.send({ message: "problem finding your dog 🐕" })
   }
@@ -35,8 +41,6 @@ async function create(req, res, next) {
   }
 }
 
-
-
 // show / get one dog
 
 async function show(req, res, next) {
@@ -52,7 +56,6 @@ async function show(req, res, next) {
     res.send({ message: "We encountered an error 🐕" })
   }
 }
-
 
 // update / update your dog
 
@@ -103,7 +106,6 @@ async function remove(req, res) {
     res.send({ message: "We encountered an error 🐕" })
   }
 }
-
 
 export default {
   index,

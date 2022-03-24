@@ -1,4 +1,5 @@
 import express from 'express'
+import commentscontroller from '../controllers/commentscontroller.js'
 import dogsController from '../controllers/dogsController.js'
 import userController from '../controllers/userController.js'
 import auth from '../middleware/auth.js'
@@ -19,8 +20,8 @@ router.route("/dogs/:dogId")
   .delete(auth, dogsController.remove)
 
 router.route("/messages/:dogId")
-  .get((req, res) => res.json({ message: 'hello message' }))
-  .post((req, res) => res.json({ message: 'hello message post' }))
+  .get(auth, commentscontroller.show)
+  .post(auth, commentscontroller.create)
 
 router.route("/register")
   .post(userController.register)
