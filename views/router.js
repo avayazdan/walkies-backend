@@ -13,12 +13,12 @@ router.route("/dogs")
   .get(auth, dogsController.index)
   .post(auth, dogsController.create)
 
-router.route("/dogs/:id")
+router.route("/dogs/:dogId")
   .get(auth, dogsController.show)
   .put(auth, dogsController.update)
   .delete(auth, dogsController.remove)
 
-router.route("/messages/:id")
+router.route("/messages/:dogId")
   .get((req, res) => res.json({ message: 'hello message' }))
   .post((req, res) => res.json({ message: 'hello message post' }))
 

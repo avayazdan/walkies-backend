@@ -1,3 +1,4 @@
+import dog from "../models/dog.js"
 import Dog from "../models/dog.js"
 
 // Dog emojis for text: 🐶🐕🦮🐩🐕‍🦺🐾🦴
@@ -20,7 +21,7 @@ async function create(req, res, next) {
   console.log(req)
   if (!["owner"].includes(req.currentUser.role)) {
     return res.status(400).json({
-  //     message: "You need to be an owner to create a dog! 🐕",
+      //     message: "You need to be an owner to create a dog! 🐕",
     })
   }
   const newDog = req.body
@@ -53,26 +54,34 @@ async function show(req, res, next) {
 }
 
 
-
 // update / update your dog
 
 async function update(req, res, next) {
   if (req.currentUser.role === "borrower") {
     return res.status(400).json({ message: "You aren't the dog owner to make any changes. 🐕" })
   }
-
+  const { dogId } = req.params
   try {
-    const dogToUpdate = await Dog.findOneAndUpdate({ id: req.params.id }, { name: req.body.name, image: req.body.image, breed: req.body.breed, age: req.body.age, location: req.body.location, description: req.body.description, availability: req.body.availability })
-      if (!dogToUpdate) {
-    return res.status(204).json({ message: `We couldn't find ${dogToUpdate} to update it` })
+    const dogToUpdate = await Dog.findById(dogId)
+
+    if (!dogToUpdate) {
+      return res.status(204).json({ message: "We couldn't find that dog to update it" })
+    }
+
+    console.log(dogToUpdate.createdBy)
+
+    if (!req.currentUser._id.equals(dogToUpdate.createdBy)) {
+      return res
+        .status(401)
+        .send({ message: "Unauthorized - You didn't create this dog" })
+    }
+    dogToUpdate.set(req.body)
+    const updatedDog = await dogToUpdate.save()
+    return res.status(200).send({ message: `We've updated ${updatedDog.name}` })
+  } catch (e) {
+    res.send({ message: "Error" })
   }
-  res.send({ message: `We've updated ${req.params.id}` })
-} catch (e) {
-  res.send({ message: "Error" })
 }
-}
-
-
 
 
 // remove / delete your dog
