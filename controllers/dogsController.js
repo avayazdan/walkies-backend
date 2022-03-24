@@ -18,13 +18,13 @@ async function index(req, res) {
 
 async function create(req, res, next) {
   console.log(req)
-  // if (!["owner"].includes(req.currentUser.role)) {
-  //   return res.status(400).json({
-  // //     message: "You need to be an owner to create a dog! 🐕",
-  //   })
-  // }
-  // const newDog = req.body
-  // newDog.createdBy = req.currentUser._id
+  if (!["owner"].includes(req.currentUser.role)) {
+    return res.status(400).json({
+  //     message: "You need to be an owner to create a dog! 🐕",
+    })
+  }
+  const newDog = req.body
+  newDog.createdBy = req.currentUser._id
   try {
     const createdDog = await Dog.create(newDog)
     console.log(createdDog)
@@ -57,9 +57,10 @@ async function show(req, res, next) {
 // update / update your dog
 
 async function update(req, res, next) {
-  // if (req.currentUser.role === "borrower") {
-  //   return res.status(400).json({ message: "You aren't the dog owner to make any changes. 🐕" })
-  // }
+  if (req.currentUser.role === "borrower") {
+    return res.status(400).json({ message: "You aren't the dog owner to make any changes. 🐕" })
+  }
+
   try {
     const dogToUpdate = await Dog.findOneAndUpdate({ id: req.params.id }, { name: req.body.name, image: req.body.image, breed: req.body.breed, age: req.body.age, location: req.body.location, description: req.body.description, availability: req.body.availability })
       if (!dogToUpdate) {

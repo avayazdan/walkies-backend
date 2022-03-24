@@ -1,6 +1,7 @@
 import express from 'express'
 import dogsController from '../controllers/dogsController.js'
 import userController from '../controllers/userController.js'
+import auth from '../middleware/auth.js'
 
 const router = express.Router()
 
@@ -9,13 +10,13 @@ router.get("/", (req, res) => {
 });
 
 router.route("/dogs")
-  .get(dogsController.index)
-  .post(dogsController.create)
+  .get(auth, dogsController.index)
+  .post(auth, dogsController.create)
 
 router.route("/dogs/:id")
-  .get(dogsController.show)
-  .put(dogsController.update)
-  .delete(dogsController.remove)
+  .get(auth, dogsController.show)
+  .put(auth, dogsController.update)
+  .delete(auth, dogsController.remove)
 
 router.route("/messages/:id")
   .get((req, res) => res.json({ message: 'hello message' }))
@@ -23,6 +24,7 @@ router.route("/messages/:id")
 
 router.route("/register")
   .post(userController.register)
+  .get(userController.viewUsers)
 
 router.route("/signin")
   .post(userController.login)

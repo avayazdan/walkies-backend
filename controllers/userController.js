@@ -32,6 +32,7 @@ async function register(req, res, next) {
     }
   
     const payload = {
+      id: user._id,
       eMail: user.eMail,
       role: user.role,
     }
