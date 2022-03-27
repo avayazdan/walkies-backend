@@ -4,6 +4,8 @@ import dogsController from '../controllers/dogsController.js'
 import userController from '../controllers/userController.js'
 import auth from '../middleware/auth.js'
 
+// production URL: https://walkies-backend.herokuapp.com/
+
 const router = express.Router()
 
 router.get("/", (req, res) => {
