@@ -6,6 +6,8 @@ import auth from '../middleware/auth.js'
 
 // production URL: https://walkies-backend.herokuapp.com/
 
+// testing git 
+
 const router = express.Router()
 
 router.get("/", (req, res) => {
