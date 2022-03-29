@@ -4,7 +4,8 @@
   "description": "A style guide application for SEI",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon server.js",
+    "start": "node server.js",
+    "dev": "npx nodemon server.js",
     "test": "node --experimental-vm-modules --no-warnings  node_modules/.bin/jest -i --verbose --watch"
   },
   "author": "",
