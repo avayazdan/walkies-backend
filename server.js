@@ -3,15 +3,15 @@ import router from './views/router.js'
 import logger from './middleware/logger.js'
 import errorHandler from './middleware/errorHandler.js'
 import { connectToDb } from './db/helpers.js'
-// import CORS if/when needed
 import dotenv from "dotenv"
+import cors from 'cors'
 
 async function startServer() {
   const app = express()
 
   dotenv.config();
   const PORT = process.env.PORT ? process.env.PORT : 4000
-
+  app.use(cors())
   // setting up express to use
 
   app.use(express.json())
