@@ -5,7 +5,7 @@ export function connectToDb() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }
-  const connectionString = process.env.CONNECT ? process.env.CONNECT : 'mongodb://127.0.0.1:27017/dogs'
+  const connectionString = process.env.DB_URI ? process.env.DB_URI : 'mongodb://127.0.0.1:27017/dogs'
   return mongoose.connect(connectionString, opts)
 
 }
