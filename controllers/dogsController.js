@@ -44,16 +44,18 @@ async function create(req, res, next) {
 // show / get one dog
 
 async function show(req, res, next) {
-  const dogName = req.params.id
+  const dogName = req.params.dogId
+
   // we will need to update this to use ID in future
   try {
-    const dogToShow = Dog.find({ name: dogName })
+    const dogToShow = await Dog.find({ _id: dogName })
     if (!dogToShow) {
-      res.status(400).send({ message: "We couldn't find this doggo, it must've gone walkies 🐾" })
+      res.status(400).json({ message: "We couldn't find this doggo, it must've gone walkies 🐾" })
     }
-    res.send(dogToShow)
+    return res.status(200).json(dogToShow)
   } catch (e) {
-    res.send({ message: "We encountered an error 🐕" })
+    console.log(e)
+    res.json({ message: "We encountered an error 🐕" })
   }
 }
 
