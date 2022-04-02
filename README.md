@@ -4,9 +4,12 @@ Deployed at: https://walkiessei22.netlify.app/
 
 This project was lovingly made by [Ava](https://github.com/avayazdan), [Claudia](https://github.com/claudiatmcp) and [Laura](https://github.com/laura-arch).
 
+![kdds](https://user-images.githubusercontent.com/75817925/161390251-1b84f54d-4aca-49df-8641-3e7da6242542.png)
+
+
 ## Project Requirements
 
-This project was built for project three of General Assembly's Full-Stack Software Engineering course. The project aim was to build our own API, utilise our growing knowledge of React as well as connecting backend to frontend for the first time. The project specs allowed us to take inspiration from complex websites/apps that use data such as AirBnb or Facebook, and essentially rebuild it in our own way if we desire.
+This project was built for project three of General Assembly's Full-Stack Software Engineering course. The project aim was to build our a MERN stack website/application with own API, utilise our growing knowledge of React as well as connecting backend to frontend for the first time. The project specs allowed us to take inspiration from complex websites/apps that use data such as AirBnb or Facebook, and essentially rebuild it in our own way if we desire.
 
 ### Table of contents 
 
@@ -121,8 +124,7 @@ We had a few challanges - such as connecting to MongoDB, deploying our backend w
 
 ### Future improvements or changes
 
-A Favorites page would be a great addition to our project (adding a dog or a borrower to your favorites, storing them for later). Another improvement would be implementing a chat messenger where users can interact with eachother in real time. 
-
+A Favorites page would be a great addition to our project (adding a dog or a borrower to your favorites, storing them for later). Another improvement would be implementing a chat messenger where users can interact with eachother in real time, or to get an inbox functionality between owners and borrowers. 
 
 
   
